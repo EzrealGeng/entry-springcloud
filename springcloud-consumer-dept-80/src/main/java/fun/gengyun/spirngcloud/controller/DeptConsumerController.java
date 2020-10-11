@@ -16,11 +16,14 @@ public class DeptConsumerController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String REST_URL_PREFIX = "http://localhost:8001";
+    //private static final String REST_URL_PREFIX = "http://localhost:8001";
+
+    // Ribbon 地址应该是一个变量，通过服务名(id)访问
+    private static final String REST_URL_PREFIX = "http://SPRINGCLOUD-PROVIDER-DEPT";
 
     @GetMapping("/consumer/dept/get/{id}")
     public Dept get(@PathVariable("id") int id) {
-        return restTemplate.getForObject(REST_URL_PREFIX + "/dept/" + id, Dept.class);
+        return restTemplate.getForObject(REST_URL_PREFIX + "/dept/get/" + id, Dept.class);
     }
 
     @PostMapping("/consumer/dept/add")
