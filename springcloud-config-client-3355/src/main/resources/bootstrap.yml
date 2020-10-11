@@ -1,0 +1,8 @@
+# bootstrap是统级的配置 application是用户级别配置
+spring:
+  cloud:
+    config:
+      name: config-client #需要从git上读取的资源名称 不需要后缀
+      uri: http://localhost:3344
+      profile: dev
+      label: master

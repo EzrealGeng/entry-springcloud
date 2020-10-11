@@ -1,4 +1,4 @@
-package fun.gengyun.springcloud.config;
+package fun.gengyun.springcloud.filter;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

@@ -21,9 +21,14 @@ info:
 zuul:
   routes:
     # 隐藏真实微服务ID
-    mydept.serviceId: springcloud-provider-dept
-    mydept.path: /mydept/**
+    mydept:
+      serviceId: springcloud-provider-dept
+      path: /mydept/**
+    myconfig:
+      serviceId: springcloud-config-server
+      path: /myconfig/**
   # 不能使用 www.gengyun.com:9527/springcloud-provider-dept/dept/get/1 访问
-  # ignored-services: "*" 隐藏全部
-  ignored-services: springcloud-provider-dept
+  #ignored-services: springcloud-provider-dept
+  ignored-services: "*"
+
   #prefix: /entry # 设置公共前缀 www.gengyun.com:9527/entry/mydept/dept/get/1
