@@ -1,0 +1,29 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: springcloud-zuul-gateway
+
+# Eureka 配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: springcloud-zuul-gateway-9527 # eureka页面 Instances currently registered with Eureka [Status]
+    prefer-ip-address: true # 显示服务真实ip
+
+info:
+  app.name: entry-springcloud
+  company.name: gengyun
+
+zuul:
+  routes:
+    # 隐藏真实微服务ID
+    mydept.serviceId: springcloud-provider-dept
+    mydept.path: /mydept/**
+  # 不能使用 www.gengyun.com:9527/springcloud-provider-dept/dept/get/1 访问
+  # ignored-services: "*" 隐藏全部
+  ignored-services: springcloud-provider-dept
+  #prefix: /entry # 设置公共前缀 www.gengyun.com:9527/entry/mydept/dept/get/1
