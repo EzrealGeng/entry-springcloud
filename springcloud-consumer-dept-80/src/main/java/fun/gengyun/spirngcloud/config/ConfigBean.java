@@ -11,11 +11,21 @@ import org.springframework.web.client.RestTemplate;
 public class ConfigBean {
 
     /*
-    IRule 负载均衡策略
-    AvailabilityFilteringRule: 会先过滤，跳闸，访问故障的服务 对剩下的进行轮询
-    RoundRobinRule: 轮询策略
-    RandomRule: 随机策略
-    RetryRule: 先按照轮询策略获取服务 如果服务获取失败 则会在指定的时间内重试
+     IRule 负载均衡策略
+     # com.netflix.loadbalancer.RoundRobinRule  - 轮询
+     # com.netflix.loadbalancer.RandomRule  - 随机
+     # com.netflix.loadbalancer.RetryRule - 重试，先按RoundRobinRule进行轮询，如果失败就在指定时间内进行重试
+     # com.netflix.loadbalancer.WeightedResponseTimeRule - 权重，响应速度越快，权重越大，越容易被选中。
+     # com.netflix.loadbalancer.BestAvailableRule  - 先过滤掉不可用的处于断路器跳闸转态的服务，然后选择一个并发量最小的服务
+     # com.netflix.loadbalancer.AvailabilityFilteringRule - 先过滤掉故障实例，再选择并发量较小的实例
+     # com.netflix.loadbalancer.ZoneAvoidanceRule - 默认规则，复合判断server所在区域的性能和server的可用性进行服务的选择。
+     */
+
+    /*
+     自定义负载均衡策略
+     第一步：新建一个不会被@ComponentScan组件扫描到的包，如：fun.gengyun.myRule
+     第二步：在该包下新建自己的负载均衡算法的规则类
+     第三步：主启动类上添加注解：@RibbonClient
      */
 
     @Bean

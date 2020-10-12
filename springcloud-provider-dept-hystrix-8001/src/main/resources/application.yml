@@ -30,3 +30,4 @@ eureka:
 info:
   app.name: entry-springcloud
   company.name: gengyun
+
